@@ -39,6 +39,11 @@ async function run() {
         res.send(result);
     })
 
+    app.get('/totalProducts', async(req, res)=>{
+        const result = await productCollection.estimatedDocumentCount();
+        res.send({totalProducts : result});
+    })
+
 
 
 
@@ -49,7 +54,7 @@ async function run() {
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 run().catch(console.dir);
